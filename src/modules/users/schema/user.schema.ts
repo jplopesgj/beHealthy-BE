@@ -2,7 +2,7 @@ import { Schema, Prop, SchemaFactory } from '@nestjs/mongoose';
 import { Role } from '../enum/role.enum';
 
 
-@Schema({ collection: 'healthy_users' })
+@Schema({ timestamps: true, collection: 'healthy_users' })
 export class Users {
 
     @Prop()
@@ -32,12 +32,6 @@ export class Users {
 
     @Prop()
     role: Role;
-
-    @Prop({ default: Date.now })
-    createdAt: Date;
-
-    @Prop()
-    updatedAt: Date;
 }
 
 export const UsersSchema = SchemaFactory.createForClass(Users);
