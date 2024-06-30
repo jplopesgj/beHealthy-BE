@@ -3,12 +3,14 @@ import { UsersService } from './users.service';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { Users } from './schema/user.schema';
+import { Public } from '../auth/public-stratategy';
 
 
 @Controller('/users')
 export class UsersController {
   constructor(private readonly usersService: UsersService) { }
 
+  @Public()
   @Post('/create')
   create(@Body() createUserDto: CreateUserDto): Promise<Users> {
     if (!createUserDto || Object.keys(createUserDto).length === 0) {
